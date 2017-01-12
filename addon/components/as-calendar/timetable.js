@@ -21,11 +21,11 @@ export default Ember.Component.extend({
   timeSlotLabelListStyle: Ember.computed('timeSlotHeight', function() {
     var timeSlotHeight = this.get('timeSlotHeight');
 
-    return (`margin-top: -${timeSlotHeight}px;
-             line-height: ${timeSlotHeight * 2}px;`).htmlSafe();
+    return Ember.String.htmlSafe(`margin-top: -${timeSlotHeight}px;
+             line-height: ${timeSlotHeight * 2}px;`);
   }),
 
   timeSlotLabelStyle: Ember.computed('timeSlotHeight', function() {
-    return (`height: ${2 * this.get('timeSlotHeight')}px;`).htmlSafe();
+    return Ember.String.htmlSafe(`height: ${2 * this.get('timeSlotHeight')}px;`);
   })
 });

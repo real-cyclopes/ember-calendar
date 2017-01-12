@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   timetable: null,
 
   timeSlotStyle: Ember.computed('timeSlotHeight', function() {
-    return `height: ${this.get('timeSlotHeight')}px`.htmlSafe();
+    return Ember.String.htmlSafe(`height: ${this.get('timeSlotHeight')}px`);
   }),
 
   dayWidth: Ember.computed(function() {
@@ -28,8 +28,8 @@ export default Ember.Component.extend({
   _style: Ember.computed(
   'timeSlotHeight',
   'timeSlots.length', function() {
-    return (`height: ${this.get('timeSlots.length') *
-                       this.get('timeSlotHeight')}px;`).htmlSafe();
+    return Ember.String.htmlSafe(`height: ${this.get('timeSlots.length') *
+                       this.get('timeSlotHeight')}px;`);
   }),
 
   _setWasInserted: Ember.on('didInsertElement', function() {

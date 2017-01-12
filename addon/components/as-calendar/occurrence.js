@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   computedTimeSlotDuration: computedDuration('timeSlotDuration'),
 
   titleStyle: Ember.computed('timeSlotHeight', function() {
-    return `line-height: ${this.get('timeSlotHeight')}px;`.htmlSafe();
+    return Ember.String.htmlSafe(`line-height: ${this.get('timeSlotHeight')}px;`);
   }),
 
   _duration: Ember.computed.oneWay('model.duration'),
@@ -44,8 +44,8 @@ export default Ember.Component.extend({
   }),
 
   _style: Ember.computed('_height', '_top', function() {
-    return `top: ${this.get('_top')}px;
-            height: ${this.get('_height')}px;`.htmlSafe();
+    return Ember.String.htmlSafe(`top: ${this.get('_top')}px;
+            height: ${this.get('_height')}px;`);
   }),
 
   _stopPropagation: Ember.on('click', function(event) {
