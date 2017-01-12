@@ -57,15 +57,6 @@ var dragOccurrence = function(occurrence, options) {
   });
 };
 
-var selectTimeZone = function(name) {
-  Ember.run(() => {
-    Ember.$('.as-calendar-time-zone-select .rl-dropdown-toggle').click();
-  });
-
-  Ember.run(() => {
-    Ember.$(`.as-calendar-time-zone-option:contains('${name}')`).click();
-  });
-};
 
 var selectNextWeek = function() {
   Ember.run(() => {
@@ -85,8 +76,6 @@ export {
   selectTime,
   resizeOccurrence,
   dragOccurrence,
-  selectTimeZone,
   selectNextWeek,
   selectPreviousWeek
 };
-

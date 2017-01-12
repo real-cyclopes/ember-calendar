@@ -8,7 +8,6 @@ import {
   selectTime,
   resizeOccurrence,
   dragOccurrence,
-  selectTimeZone,
   selectNextWeek,
   selectPreviousWeek
 } from 'ember-calendar/test-helpers/all';
@@ -184,13 +183,6 @@ test('Change time zone', function(assert) {
 
   selectTime({ day: 0, timeSlot: 0 });
 
-  assert.equal(Ember.$('.as-calendar-occurrence').position().top, 0,
-    'it shows the occurrence in the UTC time zone');
-
-  selectTimeZone('Rome');
-
-  assert.equal(Ember.$('.as-calendar-occurrence').position().top, timeSlotHeight() * 2,
-    'it shows the occurrence in the Rome time zone');
 });
 
 test('Change week', function(assert) {
