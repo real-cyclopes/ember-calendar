@@ -19,6 +19,10 @@ export default Ember.Component.extend({
 
     goToCurrentWeek: function() {
       this.get('model').goToCurrentWeek();
+      
+      if (this.attrs['onNavigateWeek']) {
+        this.attrs['onNavigateWeek'](0);
+      }
     }
   }
 });
