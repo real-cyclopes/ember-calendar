@@ -13,11 +13,27 @@
     {{#each day.occurrences as |occurrence|}}
       <li>
         {{#if hasBlock}}
-          {{yield occurrence timetable this}}
+          {{yield (hash
+            model=occurrence
+            occurrence=(component 'as-calendar/timetable/occurrence'
+              day=day
+              model=occurrence
+              timetable=timetable
+              timeSlotHeight=timeSlotHeight
+              timeSlotDuration=timeSlotDuration
+              onUpdate=(action this.attrs.onUpdateOccurrence)
+              onRemove=(action this.attrs.onRemoveOccurrence))
+            staticOccurrence=(component 'as-calendar/occurrence'
+              day=day
+              model=occurrence
+              timeSlotHeight=timeSlotHeight
+              timeSlotDuration=timeSlotDuration)
+          )}}
         {{else}}
           {{as-calendar/timetable/occurrence
             model=occurrence
             timeSlotHeight=timeSlotHeight
+            day=day
             timetable=timetable
             timeSlotDuration=timeSlotDuration
             onUpdate=(action this.attrs.onUpdateOccurrence)
@@ -31,6 +47,7 @@
         {{as-calendar/occurrence
           class="as-calendar-occurrence--preview"
           model=day.occurrencePreview
+          day=day
           timeSlotHeight=timeSlotHeight
           timeSlotDuration=timeSlotDuration}}
       </li>

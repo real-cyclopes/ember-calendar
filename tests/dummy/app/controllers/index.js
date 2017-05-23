@@ -16,16 +16,10 @@ export default Ember.Controller.extend({
 
   actions: {
     calendarAddOccurrence: function(occurrence) {
-      // this.get('occurrences').pushObject(Ember.Object.create({
-      //   title: occurrence.get('title'),
-      //   startsAt: occurrence.get('startsAt'),
-      //   endsAt: occurrence.get('endsAt')
-      // }));
-
       this.get('occurrences').pushObject(Ember.Object.create({
-        title: 'Test',
+        title: occurrence.get('title'),
         startsAt: occurrence.get('startsAt'),
-        endsAt: occurrence.get('endsAt').setTime( occurrence.get('endsAt').getTime() + 1 * 86400000 )
+        endsAt: occurrence.get('endsAt')
       }));
     },
 
