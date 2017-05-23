@@ -47,7 +47,7 @@ export default Ember.Component.extend({
 
     var dayIndex = Math.floor(offsetX / this.get('dayWidth'));
     var timeSlotIndex = Math.floor(offsetY / this.get('timeSlotHeight'));
-    var day = this.get('days').objectAt(dayIndex);
+    var day = this.get('days')[dayIndex];
 
     var timeSlot = this.get('timeSlots').objectAt(timeSlotIndex);
 

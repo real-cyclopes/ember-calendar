@@ -1,6 +1,7 @@
-import _ from 'lodash';
 import moment from 'moment';
 import Ember from 'ember';
+
+const dayRange = [0,1,2,3,4,5,6];
 
 var Day = Ember.Object.extend({
   calendar: null,
@@ -65,12 +66,12 @@ var Day = Ember.Object.extend({
 
 Day.reopenClass({
   buildWeek: function(options) {
-    return Ember.A(_.range(0, 7).map(function(dayOffset) {
+    return dayRange.map(function(dayOffset) {
       return Day.create({
         calendar: options.calendar,
         offset: dayOffset
       });
-    }));
+    });
   }
 });
 
