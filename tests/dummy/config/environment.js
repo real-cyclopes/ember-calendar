@@ -23,7 +23,7 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'style-src': "'self' 'unsafe-inline' https://use.fonticons.com",
+      'style-src': "'self' 'unsafe-inline'",
       'font-src': "'self' data:"
     },
 

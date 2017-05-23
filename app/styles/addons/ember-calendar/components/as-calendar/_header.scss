@@ -29,14 +29,6 @@
   @include bem-element('nav-group-action') {
     @extend %button;
 
-    @include bem-modifier('previous-week') {
-      @include icon('caret-left');
-    }
-
-    @include bem-modifier('next-week') {
-      @include icon('caret-right');
-    }
-
     @include bem-modifier('current-week') {
       text-transform: uppercase;
 

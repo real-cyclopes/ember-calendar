@@ -141,11 +141,6 @@ We do not add any vendor CSS to your app by default, but you can include it if y
 ```scss
 // app/styles/app.scss
 
-@import 'bower_components/fontawesome/scss/variables';
-@import 'bower_components/fontawesome/scss/path';
-@import 'bower_components/fontawesome/scss/mixins';
-@import 'bower_components/fontawesome/scss/icons';
-
 @import 'addons/ember-calendar/paint-core';
 @import 'addons/ember-calendar/main';
 ```
@@ -153,28 +148,6 @@ We do not add any vendor CSS to your app by default, but you can include it if y
 There are some basic resets applied by default on `.as-calendar`, like `box-sizing: border-box` and `list-style: none` for all inner `ul > li`s.
 
 If you already have those resets in your app add an `$as-calendar-global-resets: false;` before loading the `main` stylesheet.
-
-## Build Options
-
-Font Aweseome assets are exported during a build by default which may conflict
-with assets already being exported by your project. To prevent this, add
-the following option to your ember-cli-build.js file:
-
-```js
-// ember-cli-build.js
-
-module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
-
-    // Add options here
-    emberCalendar: {
-      includeFontAwesomeAssets: false
-    }
-  });
-
-  return app.toTree();
-};
-```
 
 ## Developing
 

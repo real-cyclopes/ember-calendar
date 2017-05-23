@@ -35,22 +35,6 @@ $global-transition-duration: .325s !default;
   }
 }
 
-@mixin icon($name, $selector: '') {
-  // @extend .fa-#{$name};
-
-  @if $selector == '' {
-    // @include fa-icon;
-  } @else {
-    &:#{$selector} {
-      // @include fa-icon;
-    }
-  }
-}
-
-@mixin button-icon($icon) {
-  @include icon($icon);
-}
-
 $colors: (
   text: (
     base: #222222,
@@ -142,35 +126,6 @@ $colors: (
   }
 
   @return $output-color;
-}
-
-$dropdown: (
-  background-color: color(white),
-  border-color: color(border),
-  z-index: 100,
-
-  link: (
-    color: color(text),
-    hover-color: color(black),
-    hover-background-color: color(border),
-    active-color: color(link),
-    active-background-color: color(border, light),
-    disabled-color: color(text, small)
-  ),
-
-  search: (
-    padding-inner: 3px,
-    icon-size: 32px,
-    results-height: 15em
-  )
-);
-
-@function dropdown-settings($setting, $property: null) {
-  @if $property {
-    @return map-get(map-get($dropdown, $setting), $property);
-  } @else {
-    @return map-get($dropdown, $setting);
-  }
 }
 
 $form-input: (

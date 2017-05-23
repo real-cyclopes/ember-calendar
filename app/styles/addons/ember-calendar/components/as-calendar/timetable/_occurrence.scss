@@ -10,7 +10,6 @@
     }
 
     @include bem-element('remove') {
-      @include icon(times);
 
       color: color(white);
       cursor: pointer;

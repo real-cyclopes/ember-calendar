@@ -4,18 +4,31 @@
 
 <nav class="as-calendar-header__nav">
   <ul class="as-calendar-header__nav-group">
+
     <li class="as-calendar-header__nav-group-item">
-      <button class="as-calendar-header__nav-group-action as-calendar-header__nav-group-action--previous-week" {{action "navigateWeek" -1}}></button>
+      {{#if backButton}}
+        {{backButton onClick=(action "navigateWeek" -1)}}
+      {{else}}
+        <button class="as-calendar-header__nav-group-action" {{action "navigateWeek" -1}}>&#x25c0;</button>
+      {{/if}}
     </li>
 
     <li class="as-calendar-header__nav-group-item">
-      <button disabled={{isInCurrentWeek}}
-        class="as-calendar-header__nav-group-action as-calendar-header__nav-group-action--current-week"
-        {{action "goToCurrentWeek"}}>This Week</button>
+      {{#if todayButton}}
+        {{todayButton onClick=(action "goToCurrentWeek")}}
+      {{else}}
+        <button disabled={{isInCurrentWeek}}
+          class="as-calendar-header__nav-group-action as-calendar-header__nav-group-action--current-week"
+          {{action "goToCurrentWeek"}}>This Week</button>
+      {{/if}}
     </li>
 
     <li class="as-calendar-header__nav-group-item">
-      <button class="as-calendar-header__nav-group-action as-calendar-header__nav-group-action--next-week" {{action "navigateWeek" 1}}></button>
+      {{#if nextButton}}
+        {{nextButton onClick=(action "navigateWeek" 1)}}
+      {{else}}
+        <button class="as-calendar-header__nav-group-action" {{action "navigateWeek" 1}}>&#x25ba;</button>
+      {{/if}}
     </li>
   </ul>
 </nav>

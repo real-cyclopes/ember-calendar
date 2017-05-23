@@ -11,33 +11,7 @@ module.exports = {
 
     var options = app.options.emberCalendar || {};
 
-    if (!('includeFontAwesomeAssets' in options)) {
-      options.includeFontAwesomeAssets = true;
-    }
-
     app.import(path.join(app.bowerDirectory, 'interact/interact.js'));
-
-    // if (options.includeFontAwesomeAssets) {
-    //   app.import(path.join(app.bowerDirectory, 'fontawesome/fonts/fontawesome-webfont.ttf'), {
-    //     destDir: 'fonts'
-    //   });
-    //
-    //   app.import(path.join(app.bowerDirectory, 'fontawesome/fonts/fontawesome-webfont.woff'), {
-    //     destDir: 'fonts'
-    //   });
-    //
-    //   app.import(path.join(app.bowerDirectory, 'fontawesome/fonts/fontawesome-webfont.woff2'), {
-    //     destDir: 'fonts'
-    //   });
-    //
-    //   app.import(path.join(app.bowerDirectory, 'fontawesome/fonts/fontawesome-webfont.svg'), {
-    //     destDir: 'fonts'
-    //   });
-    //
-    //   app.import(path.join(app.bowerDirectory, 'fontawesome/fonts/fontawesome-webfont.eot'), {
-    //     destDir: 'fonts'
-    //   });
-    // }
 
     app.import('vendor/ember-calendar/interact.js', {
       type: 'vendor',
