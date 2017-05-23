@@ -5,13 +5,15 @@
 <nav class="as-calendar-header__nav">
   <ul class="as-calendar-header__nav-group">
 
-    <li class="as-calendar-header__nav-group-item">
-      {{#if backButton}}
-        {{backButton onClick=(action "navigateWeek" -1)}}
-      {{else}}
-        <button class="as-calendar-header__nav-group-action" {{action "navigateWeek" -1}}>&#x25c0;</button>
-      {{/if}}
-    </li>
+    {{#if showPrevWeekButton}}
+      <li class="as-calendar-header__nav-group-item">
+        {{#if backButton}}
+          {{backButton onClick=(action "navigateWeek" -1)}}
+        {{else}}
+          <button class="as-calendar-header__nav-group-action" {{action "navigateWeek" -1}}>&#x25c0;</button>
+        {{/if}}
+      </li>
+    {{/if}}
 
     <li class="as-calendar-header__nav-group-item">
       {{#if todayButton}}

@@ -54,5 +54,25 @@ export default Ember.Component.extend({
     this.attrs.onSelectTime(
       moment(day.get('value')).add(timeSlot.get('time'))
     );
+  }),
+
+  today: Ember.computed('days', function() {
+    return this.get('days').find(day => {
+      return day.get('isToday');
+    });
+  }),
+
+  todayTop: Ember.computed(
+    'today.startingTime',
+    'model.timeSlotDuration',
+    'timeSlotHeight', function() {
+    const now = moment();
+    return (now.diff(this.get('today.startingTime')) /
+            this.get('model.timeSlotDuration').as('ms')) *
+            this.get('timeSlotHeight');
+  }),
+
+  todayStyle: Ember.computed('_top', function() {
+    return Ember.String.htmlSafe(`top: ${this.get('todayTop')}px;`);
   })
 });

@@ -7,6 +7,9 @@
 <ul class="as-calendar-timetable__days">
   {{#each days as |day|}}
     <li class="as-calendar-timetable__day {{if day.isToday "as-calendar-timetable__day--today"}}">
+      {{#if day.isToday}}
+        <div class="as-calendar-timetable__day--today--divider" style={{todayStyle}}></div>
+      {{/if}}
       {{yield day this}}
     </li>
   {{/each}}

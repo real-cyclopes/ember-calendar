@@ -20,6 +20,9 @@ export default Ember.Component.extend({
   timeSlotHeight: 20,
   title: null,
 
+  disablePast: false,
+  highlightNow: true,
+
   _initializeModel: Ember.on('init', function() {
     this.set('model', ComponentCalendar.create({ component: this }));
   }),

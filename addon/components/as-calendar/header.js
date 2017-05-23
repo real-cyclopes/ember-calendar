@@ -8,6 +8,10 @@ export default Ember.Component.extend({
   model: null,
   title: '',
 
+  showPrevWeekButton: Ember.computed('disablePast', 'isInCurrentWeek', function() {
+    return !this.get('disablePast') && !this.get('isInCurrentWeek');
+  }),
+
   actions: {
     navigateWeek: function(index) {
       this.get('model').navigateWeek(index);
@@ -19,7 +23,7 @@ export default Ember.Component.extend({
 
     goToCurrentWeek: function() {
       this.get('model').goToCurrentWeek();
-      
+
       if (this.attrs['onNavigateWeek']) {
         this.attrs['onNavigateWeek'](0);
       }
