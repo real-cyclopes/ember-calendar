@@ -36,13 +36,13 @@ $global-transition-duration: .325s !default;
 }
 
 @mixin icon($name, $selector: '') {
-  @extend .fa-#{$name};
+  // @extend .fa-#{$name};
 
   @if $selector == '' {
-    @include fa-icon;
+    // @include fa-icon;
   } @else {
     &:#{$selector} {
-      @include fa-icon;
+      // @include fa-icon;
     }
   }
 }

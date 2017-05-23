@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
   var ENV = {
@@ -28,8 +28,7 @@ module.exports = function(environment) {
     },
 
     moment: {
-      allowEmpty: true,
-      includeTimezone: 'all'
+      allowEmpty: true
     }
   };
 

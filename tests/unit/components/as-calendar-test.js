@@ -166,25 +166,6 @@ test('Drag an occurrence', function(assert) {
   );
 });
 
-test('Change time zone', function(assert) {
-  this.render(hbs`
-    {{as-calendar
-      title="Ember Calendar"
-      occurrences=occurrences
-      timeZone="Europe/London"
-      dayStartingTime="9:00"
-      dayEndingTime="18:00"
-      timeSlotDuration="00:30"
-      defaultTimeZoneQuery="Rome"
-      onAddOccurrence=(action "calendarAddOccurrence")
-      onUpdateOccurrence=(action "calendarUpdateOccurrence")
-      onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
-  `);
-
-  selectTime({ day: 0, timeSlot: 0 });
-
-});
-
 test('Change week', function(assert) {
 
   var weekIndex = 0;

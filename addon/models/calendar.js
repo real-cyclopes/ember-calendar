@@ -10,7 +10,6 @@ export default Ember.Object.extend({
   occurrences: null,
   startingDate: null,
   timeSlotDuration: null,
-  timeZone: null,
   occurrencePreview: null,
 
   isInCurrentWeek: Ember.computed('week', '_currentWeek', function() {
@@ -18,12 +17,10 @@ export default Ember.Object.extend({
   }),
 
   timeSlots: Ember.computed(
-    'timeZone',
     'dayStartingTime',
     'dayEndingTime',
     'timeSlotDuration', function() {
     return TimeSlot.buildDay({
-      timeZone: this.get('timeZone'),
       startingTime: this.get('dayStartingTime'),
       endingTime: this.get('dayEndingTime'),
       duration: this.get('timeSlotDuration')
@@ -34,12 +31,12 @@ export default Ember.Object.extend({
     return Day.buildWeek({ calendar: this });
   }),
 
-  week: Ember.computed('startingTime', 'timeZone', function() {
-    return moment(this.get('startingTime')).tz(this.get('timeZone')).startOf('isoWeek');
+  week: Ember.computed('startingTime', function() {
+    return moment(this.get('startingTime')).startOf('isoWeek');
   }),
 
-  _currentWeek: Ember.computed('timeZone', function() {
-    return moment().tz(this.get('timeZone')).startOf('isoWeek');
+  _currentWeek: Ember.computed(function() {
+    return moment().startOf('isoWeek');
   }),
 
   initializeCalendar: Ember.on('init', function() {

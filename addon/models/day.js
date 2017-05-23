@@ -11,12 +11,10 @@ var Day = Ember.Object.extend({
   }),
 
   occurrences: Ember.computed(
-    'calendar.occurrences.@each.startingTime',
+    'calendar.occurrences.@each.{startingTime,endingTime}',
     'startingTime',
     'endingTime', function() {
-    return this.get('calendar.occurrences').filter((occurrence) => {
-      var startingTime = occurrence.get('startingTime');
-
+    return this.get('calendar.occurrences').filter(occurrence => {
       return startingTime >= this.get('startingTime') &&
              startingTime <= this.get('endingTime');
     });
