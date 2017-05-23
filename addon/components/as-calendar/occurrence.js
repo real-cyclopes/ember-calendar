@@ -17,23 +17,17 @@ export default Ember.Component.extend({
     return Ember.String.htmlSafe(`line-height: ${this.get('timeSlotHeight')}px;`);
   }),
 
+  _dayStartingTime: Ember.computed.oneWay('day.startingTime'),
 
-  _duration: Ember.computed('_startingTime', '_endingTime', function() {
-    return moment.duration(
-      this.get('_endingTime').diff(this.get('_startingTime'))
-    );
-  }),
+  _dayEndingTime: Ember.computed.oneWay('day.endingTime'),
 
-  // _duration: Ember.computed.oneWay('model.duration'),
   _startingTime: Ember.computed('model.startingTime', '_dayStartingTime', function() {
-    debugger;
     if (this.get('model.startingTime').isBefore(this.get('_dayStartingTime'))) {
       return this.get('_dayStartingTime');
     } else {
       return this.get('model.startingTime');
     }
   }),
-  _dayStartingTime: Ember.computed.oneWay('day.startingTime'),
 
   _endingTime: Ember.computed('model.endingTime', '_dayEndingTime', function() {
     if (this.get('model.endingTime').isAfter(this.get('_dayEndingTime'))) {
@@ -42,7 +36,12 @@ export default Ember.Component.extend({
       return this.get('model.endingTime');
     }
   }),
-  _dayEndingTime: Ember.computed.oneWay('day.endingTime'),
+
+  _duration: Ember.computed('_startingTime', '_endingTime', function() {
+    return moment.duration(
+      this.get('_endingTime').diff(this.get('_startingTime'))
+    );
+  }),
 
   _occupiedTimeSlots: Ember.computed(
     '_duration',
