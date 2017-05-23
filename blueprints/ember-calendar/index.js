@@ -11,8 +11,7 @@ module.exports = {
       packages: [{ name: 'ember-moment', target: '6.1.0' }]
     }).then(function() {
       return self.addPackagesToProject([
-        { name: 'ember-cli-sass', target: '5.6.0' },
-        { name: 'liquid-fire', target: '0.27.0' }
+        { name: 'ember-cli-sass', target: '5.6.0' }
       ]);
     }).then(function() {
       return self.addBowerPackagesToProject([
