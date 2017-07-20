@@ -39,23 +39,23 @@ var selectTime = function(options) {
   });
 };
 
-var resizeOccurrence = function(occurrence, options) {
-  Ember.run(() => {
-    occurrence.find('.as-calendar-occurrence__resize-handle').simulate('drag', {
-      dx: 0,
-      dy: options.timeSlots * timeSlotHeight() + occurrence.height()
-    });
-  });
-};
+// var resizeOccurrence = function(occurrence, options) {
+//   Ember.run(() => {
+//     occurrence.find('.as-calendar-occurrence__resize-handle').simulate('drag', {
+//       dx: 0,
+//       dy: options.timeSlots * timeSlotHeight() + occurrence.height()
+//     });
+//   });
+// };
 
-var dragOccurrence = function(occurrence, options) {
-  Ember.run(() => {
-    occurrence.simulate('drag', {
-      dx: options.days * dayWidth(),
-      dy: options.timeSlots * timeSlotHeight() + occurrence.height()
-    });
-  });
-};
+// var dragOccurrence = function(occurrence, options) {
+//   Ember.run(() => {
+//     occurrence.simulate('drag', {
+//       dx: options.days * dayWidth(),
+//       dy: options.timeSlots * timeSlotHeight() + occurrence.height()
+//     });
+//   });
+// };
 
 
 var selectNextWeek = function() {
@@ -74,8 +74,6 @@ export {
   timeSlotHeight,
   dayWidth,
   selectTime,
-  resizeOccurrence,
-  dragOccurrence,
   selectNextWeek,
   selectPreviousWeek
 };

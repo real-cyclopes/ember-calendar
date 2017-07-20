@@ -6,8 +6,6 @@ import {
   timeSlotHeight,
   dayWidth,
   selectTime,
-  resizeOccurrence,
-  dragOccurrence,
   selectNextWeek,
   selectPreviousWeek
 } from 'ember-calendar/test-helpers/all';
@@ -93,78 +91,78 @@ test('Remove an occurrence', function(assert) {
 });
 
 
-test('Resize an occurrence', function(assert) {
-  this.render(hbs`
-    {{as-calendar
-      title="Ember Calendar"
-      occurrences=occurrences
-      dayStartingTime="9:00"
-      dayEndingTime="18:00"
-      timeSlotDuration="00:30"
-      defaultOccurrenceDuration="00:30"
-      onAddOccurrence=(action "calendarAddOccurrence")
-      onUpdateOccurrence=(action "calendarUpdateOccurrence")
-      onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
-  `);
+// test('Resize an occurrence', function(assert) {
+//   this.render(hbs`
+//     {{as-calendar
+//       title="Ember Calendar"
+//       occurrences=occurrences
+//       dayStartingTime="9:00"
+//       dayEndingTime="18:00"
+//       timeSlotDuration="00:30"
+//       defaultOccurrenceDuration="00:30"
+//       onAddOccurrence=(action "calendarAddOccurrence")
+//       onUpdateOccurrence=(action "calendarUpdateOccurrence")
+//       onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
+//   `);
+//
+//   selectTime({ day: 0, timeSlot: 0 });
+//
+//   assert.equal(Ember.$('.as-calendar-occurrence').length, 1,
+//     'it adds the occurrence to the calendar'
+//   );
+//
+//   resizeOccurrence(Ember.$('.as-calendar-occurrence'), { timeSlots: 2 });
+//
+//   assert.equal(Ember.$('.as-calendar-occurrence').height(), timeSlotHeight() * 3,
+//     'it resizes the occurrence');
+// });
 
-  selectTime({ day: 0, timeSlot: 0 });
-
-  assert.equal(Ember.$('.as-calendar-occurrence').length, 1,
-    'it adds the occurrence to the calendar'
-  );
-
-  resizeOccurrence(Ember.$('.as-calendar-occurrence'), { timeSlots: 2 });
-
-  assert.equal(Ember.$('.as-calendar-occurrence').height(), timeSlotHeight() * 3,
-    'it resizes the occurrence');
-});
-
-test('Drag an occurrence', function(assert) {
-  const pixelAccuracy = 5;
-  let assertAlmostEqual = function(first, second, message) {
-    assert.ok(Math.abs(first - second) < pixelAccuracy, message);
-  };
-
-  this.render(hbs`
-    {{as-calendar
-      title="Ember Calendar"
-      occurrences=occurrences
-      dayStartingTime="9:00"
-      dayEndingTime="18:00"
-      timeSlotDuration="00:30"
-      onAddOccurrence=(action "calendarAddOccurrence")
-      onUpdateOccurrence=(action "calendarUpdateOccurrence")
-      onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
-  `);
-
-  selectTime({ day: 0, timeSlot: 0 });
-
-  assert.equal(this.$('.as-calendar-occurrence').length, 1,
-    'it adds the occurrence to the calendar'
-  );
-
-  dragOccurrence(this.$('.as-calendar-occurrence'), { days: 2, timeSlots: 4 });
-
-  var $occurrence = this.$('.as-calendar-occurrence');
-
-  var dayOffset = $occurrence.offset().left -
-    this.$('.as-calendar-timetable-content').offset().left;
-
-  var timeSlotOffset = $occurrence.offset().top -
-    this.$('.as-calendar-timetable-content').offset().top;
-
-  assertAlmostEqual(dayOffset, dayWidth() * 2,
-    'it drags the occurrence to the correct day'
-  );
-
-  assertAlmostEqual(timeSlotOffset, timeSlotHeight() * 4,
-    'it drags the occurrence to the correct timeslot'
-  );
-
-  assertAlmostEqual($occurrence.height(), timeSlotHeight() * 2,
-    'it keeps the duration of the occurrence'
-  );
-});
+// test('Drag an occurrence', function(assert) {
+//   const pixelAccuracy = 5;
+//   let assertAlmostEqual = function(first, second, message) {
+//     assert.ok(Math.abs(first - second) < pixelAccuracy, message);
+//   };
+//
+//   this.render(hbs`
+//     {{as-calendar
+//       title="Ember Calendar"
+//       occurrences=occurrences
+//       dayStartingTime="9:00"
+//       dayEndingTime="18:00"
+//       timeSlotDuration="00:30"
+//       onAddOccurrence=(action "calendarAddOccurrence")
+//       onUpdateOccurrence=(action "calendarUpdateOccurrence")
+//       onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
+//   `);
+//
+//   selectTime({ day: 0, timeSlot: 0 });
+//
+//   assert.equal(this.$('.as-calendar-occurrence').length, 1,
+//     'it adds the occurrence to the calendar'
+//   );
+//
+//   dragOccurrence(this.$('.as-calendar-occurrence'), { days: 2, timeSlots: 4 });
+//
+//   var $occurrence = this.$('.as-calendar-occurrence');
+//
+//   var dayOffset = $occurrence.offset().left -
+//     this.$('.as-calendar-timetable-content').offset().left;
+//
+//   var timeSlotOffset = $occurrence.offset().top -
+//     this.$('.as-calendar-timetable-content').offset().top;
+//
+//   assertAlmostEqual(dayOffset, dayWidth() * 2,
+//     'it drags the occurrence to the correct day'
+//   );
+//
+//   assertAlmostEqual(timeSlotOffset, timeSlotHeight() * 4,
+//     'it drags the occurrence to the correct timeslot'
+//   );
+//
+//   assertAlmostEqual($occurrence.height(), timeSlotHeight() * 2,
+//     'it keeps the duration of the occurrence'
+//   );
+// });
 
 test('Change week', function(assert) {
 
