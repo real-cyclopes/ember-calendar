@@ -1,7 +1,0 @@
-{
-  "name": "ember-calendar",
-  "dependencies": {
-    "ember-qunit-notifications": "0.1.0",
-    "interact": "1.2.8"
-  }
-}

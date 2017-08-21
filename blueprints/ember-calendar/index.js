@@ -11,12 +11,9 @@ module.exports = {
       packages: [{ name: 'ember-moment', target: '6.1.0' }]
     }).then(function() {
       return self.addPackagesToProject([
-        { name: 'ember-cli-sass', target: '5.6.0' }
+        { name: 'ember-cli-sass', target: '5.6.0' },
+        { name: 'interact', target: '1.2.9' }
       ]);
-    }).then(function() {
-      return self.addBowerPackagesToProject([
-        { name: 'interact', target: '1.2.8' }
-      ]);
-    });
+    })
   }
 };

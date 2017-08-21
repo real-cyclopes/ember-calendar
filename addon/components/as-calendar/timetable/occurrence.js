@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-import interact from 'interact';
+import interact from 'npm:interact';
 import OccurrenceComponent from '../occurrence';
 
 export default OccurrenceComponent.extend({
