@@ -12,7 +12,7 @@ module.exports = {
     }).then(function() {
       return self.addPackagesToProject([
         { name: 'ember-cli-sass', target: '5.6.0' },
-        { name: 'interact', target: '1.2.9' }
+        { name: 'interactjs', target: '1.2.9' }
       ]);
     })
   }
