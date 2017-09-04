@@ -3,8 +3,6 @@ import { test, moduleForComponent } from 'ember-qunit';
 import Ember from 'ember';
 
 import {
-  timeSlotHeight,
-  dayWidth,
   selectTime,
   selectNextWeek,
   selectPreviousWeek
@@ -166,9 +164,9 @@ test('Remove an occurrence', function(assert) {
 
 test('Change week', function(assert) {
 
-  var weekIndex = 0;
+  let weekIndex = 0;
 
-  this.on('navigateWeek', (index) => {
+  this.set('navigateWeek', (index) => {
     weekIndex += index;
   });
 
@@ -177,7 +175,7 @@ test('Change week', function(assert) {
       title="Ember Calendar"
       occurrences=occurrences
       onRemoveOccurrence=(action "calendarRemoveOccurrence")
-      onNavigateWeek=(action "navigateWeek")}}
+      onNavigateWeek=(action navigateWeek)}}
   `);
 
   selectNextWeek();

@@ -60,13 +60,13 @@ var selectTime = function(options) {
 
 var selectNextWeek = function() {
   Ember.run(() => {
-    Ember.$('button.as-calendar-header__nav-group-action--next-week').click();
+    Ember.$('button.as-calendar-header__nav-group-action').last().click();
   });
 };
 
 var selectPreviousWeek = function() {
   Ember.run(() => {
-    Ember.$('button.as-calendar-header__nav-group-action--previous-week').click();
+    Ember.$('button.as-calendar-header__nav-group-action').first().click();
   });
 };
 

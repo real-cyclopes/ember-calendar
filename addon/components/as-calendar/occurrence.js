@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import computedDuration from 'ember-calendar/macros/computed-duration';
+import moment from 'moment';
 
 export default Ember.Component.extend({
   attributeBindings: ['_style:style'],
@@ -71,5 +72,5 @@ export default Ember.Component.extend({
 
   _stopPropagation: Ember.on('click', function(event) {
     event.stopPropagation();
-  }),
+  })
 });
