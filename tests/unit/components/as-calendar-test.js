@@ -1,6 +1,8 @@
+import { run } from '@ember/runloop';
+import $ from 'jquery';
+import { A } from '@ember/array';
 import hbs from 'htmlbars-inline-precompile';
 import { test, moduleForComponent } from 'ember-qunit';
-import Ember from 'ember';
 
 import {
   selectTime,
@@ -12,7 +14,7 @@ moduleForComponent('as-calendar', 'AsCalendarComponent', {
   integration: true,
 
   beforeEach: function() {
-    this.set('occurrences', Ember.A());
+    this.set('occurrences', A());
 
     this.on('calendarAddOccurrence', (occurrence) => {
       this.get('occurrences').pushObject(occurrence);
@@ -41,13 +43,13 @@ test('Add an occurrence', function(assert) {
       onRemoveOccurrence=(action "calendarRemoveOccurrence")}}
   `);
 
-  assert.equal(Ember.$('.as-calendar-occurrence').length, 0,
+  assert.equal($('.as-calendar-occurrence').length, 0,
     'it shows an empty calendar'
   );
 
   selectTime({ day: 0, timeSlot: 0 });
 
-  assert.equal(Ember.$('.as-calendar-occurrence').length, 1,
+  assert.equal($('.as-calendar-occurrence').length, 1,
     'it adds the occurrence to the calendar'
   );
 
@@ -75,15 +77,15 @@ test('Remove an occurrence', function(assert) {
 
   selectTime({ day: 0, timeSlot: 0 });
 
-  assert.equal(Ember.$('.as-calendar-occurrence').length, 1,
+  assert.equal($('.as-calendar-occurrence').length, 1,
     'it adds the occurrence to the calendar'
   );
 
-  Ember.run(() => {
-    Ember.$('.as-calendar-occurrence .as-calendar-occurrence__remove').click();
+  run(() => {
+    $('.as-calendar-occurrence .as-calendar-occurrence__remove').click();
   });
 
-  assert.equal(Ember.$('.as-calendar-occurrence').length, 0,
+  assert.equal($('.as-calendar-occurrence').length, 0,
     'it removes the occurrence from the calendar'
   );
 });

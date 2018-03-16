@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
+import { oneWay } from '@ember/object/computed';
 import moment from 'moment';
 import interact from 'interact';
 import OccurrenceComponent from '../occurrence';
@@ -11,19 +13,24 @@ export default OccurrenceComponent.extend({
   isDraggable: true,
   isResizable: true,
   isRemovable: true,
-  dayWidth: Ember.computed.oneWay('timetable.dayWidth'),
-  referenceElement: Ember.computed.oneWay('timetable.referenceElement'),
+  dayWidth: oneWay('timetable.dayWidth'),
+  referenceElement: oneWay('timetable.referenceElement'),
 
-  _calendar: Ember.computed.oneWay('model.calendar'),
-  _dayEndingTime: Ember.computed.oneWay('day.endingTime'),
+  _calendar: oneWay('model.calendar'),
+  _dayEndingTime: oneWay('day.endingTime'),
   _dragBottomDistance: null,
   _dragTopDistance: null,
   _dragVerticalOffset: null,
-  _preview: Ember.computed.oneWay('_calendar.occurrencePreview'),
+  _preview: oneWay('_calendar.occurrencePreview'),
 
-  _setupInteractable: Ember.on('didInsertElement', function() {
+  didInsertElement() {
+    this._super(...arguments);
+    this._setupInteractable();
+  },
+
+  _setupInteractable() {
     var interactable = interact(this.$()[0]).on('mouseup', (event) => {
-      Ember.run(this, this._mouseUp, event);
+      run(this, this._mouseUp, event);
     });
 
     if (this.get('isResizable')) {
@@ -31,15 +38,15 @@ export default OccurrenceComponent.extend({
         edges: { bottom: '.as-calendar-occurrence__resize-handle' },
 
         onstart: (event) => {
-          Ember.run(this, this._resizeStart, event);
+          run(this, this._resizeStart, event);
         },
 
         onmove: (event) => {
-          Ember.run(this, this._resizeMove, event);
+          run(this, this._resizeMove, event);
         },
 
         onend: (event) => {
-          Ember.run(this, this._resizeEnd, event);
+          run(this, this._resizeEnd, event);
         },
       });
     }
@@ -47,23 +54,24 @@ export default OccurrenceComponent.extend({
     if (this.get('isDraggable')) {
       interactable.draggable({
         onstart: (event) => {
-          Ember.run(this, this._dragStart, event);
+          run(this, this._dragStart, event);
         },
 
         onmove: (event) => {
-          Ember.run(this, this._dragMove, event);
+          run(this, this._dragMove, event);
         },
 
         onend: (event) => {
-          Ember.run(this, this._dragEnd, event);
+          run(this, this._dragEnd, event);
         },
       });
     }
-  }),
+  },
 
-  _teardownInteractable: Ember.on('willDestroyElement', function() {
+  willDestroyElement() {
+    this._super(...arguments);
     interact(this.$()[0]).off();
-  }),
+  },
 
   _resizeStart: function() {
     this.set('isInteracting', true);
@@ -94,7 +102,7 @@ export default OccurrenceComponent.extend({
 
   _dragStart: function() {
     var $this = this.$();
-    var $referenceElement = Ember.$(this.get('referenceElement'));
+    var $referenceElement = $(this.get('referenceElement'));
 
     this.set('isInteracting', true);
     this.set('_calendar.occurrencePreview', this.get('model').copy());
@@ -134,7 +142,7 @@ export default OccurrenceComponent.extend({
   },
 
   _dragDayOffset: function(event) {
-    var $referenceElement = Ember.$(this.get('referenceElement'));
+    var $referenceElement = $(this.get('referenceElement'));
 
     var offsetX = this._clamp(
       event.pageX - $referenceElement.offset().left,
@@ -163,7 +171,7 @@ export default OccurrenceComponent.extend({
   },
 
   _mouseUp: function() {
-    Ember.$(document.documentElement).css('cursor', '');
+    $(document.documentElement).css('cursor', '');
   },
 
   _validateAndSavePreview: function(changes) {

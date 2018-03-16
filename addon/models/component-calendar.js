@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { oneWay } from '@ember/object/computed';
 import computedMoment from 'ember-calendar/macros/computed-moment';
 import computedDuration from 'ember-calendar/macros/computed-duration';
 import Calendar from './calendar';
@@ -11,7 +12,7 @@ export default Calendar.extend({
   dayEndingTime: computedDuration('component.dayEndingTime'),
   timeSlotDuration: computedDuration('component.timeSlotDuration'),
 
-  defaultOccurrenceTitle: Ember.computed.oneWay(
+  defaultOccurrenceTitle: oneWay(
     'component.defaultOccurrenceTitle'
   ),
 
@@ -19,7 +20,7 @@ export default Calendar.extend({
     'component.defaultOccurrenceDuration'
   ),
 
-  occurrences: Ember.computed('component.occurrences.[]', function() {
+  occurrences: computed('component.occurrences.[]', function() {
     return this.get('component.occurrences').map((occurrence) => {
       return OccurrenceProxy.create({ calendar: this, content: occurrence });
     });

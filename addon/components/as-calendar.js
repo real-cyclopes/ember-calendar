@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import ComponentCalendar from 'ember-calendar/models/component-calendar';
 //import InboundActionsMixin from 'ember-component-inbound-actions/inbound-actions';
 
 //export default Ember.Component.extend(InboundActionsMixin, {
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: [':as-calendar'],
   tagName: 'section',
 
@@ -23,23 +23,23 @@ export default Ember.Component.extend({
   disablePast: false,
   highlightNow: true,
 
-  _initializeModel: Ember.on('init', function() {
+  init() {
+    this._super(...arguments);
     this.set('model', ComponentCalendar.create({ component: this }));
-  }),
+  },
 
   actions: {
-
-    addOccurrence: function(time) {
-      var occurrence = this.get('model').createOccurrence({
+    addOccurrence(time) {
+      let occurrence = this.get('model').createOccurrence({
         startsAt: time.toDate()
       });
 
-      this.attrs['onAddOccurrence'](occurrence.get('content'));
+      this.get('onAddOccurrence')(occurrence.get('content'));
     },
 
-    onNavigateWeek: function(index) {
-      if (this.attrs['onNavigateWeek']) {
-        this.attrs['onNavigateWeek'](index);
+    onNavigateWeek(index) {
+      if (this.get('onNavigateWeek')) {
+        this.get('onNavigateWeek')(index);
       }
     }
   }

@@ -1,18 +1,19 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 
 var timeSlotHeight = function() {
-  return Ember.$('.as-calendar-timetable-content')
+  return $('.as-calendar-timetable-content')
     .find('.as-calendar-timetable__slot-item:first')
     .height();
 };
 
 var dayWidth = function() {
-  var $content = Ember.$('.as-calendar-timetable-content');
+  var $content = $('.as-calendar-timetable-content');
   return $content.width() / $content.find('.as-calendar-timetable__day').length;
 };
 
 var pointForTime = function(options) {
-  var $target = Ember.$('.as-calendar-timetable-content');
+  var $target = $('.as-calendar-timetable-content');
   var offsetX = options.day * dayWidth();
   var offsetY = options.timeSlot * timeSlotHeight();
   var pageX = $target.offset().left + offsetX;
@@ -21,16 +22,16 @@ var pointForTime = function(options) {
   return {
     pageX: pageX,
     pageY: pageY,
-    clientX: pageX - Ember.$(document).scrollLeft(),
-    clientY: pageY - Ember.$(document).scrollTop()
+    clientX: pageX - $(document).scrollLeft(),
+    clientY: pageY - $(document).scrollTop()
   };
 };
 
 var selectTime = function(options) {
-  Ember.run(() => {
-    var $target = Ember.$('.as-calendar-timetable-content');
+  run(() => {
+    var $target = $('.as-calendar-timetable-content');
     var point = pointForTime(options);
-    var event = Ember.$.Event('click');
+    var event = $.Event('click');
 
     event.pageX = point.pageX;
     event.pageY = point.pageY;
@@ -59,14 +60,14 @@ var selectTime = function(options) {
 
 
 var selectNextWeek = function() {
-  Ember.run(() => {
-    Ember.$('button.as-calendar-header__nav-group-action').last().click();
+  run(() => {
+    $('button.as-calendar-header__nav-group-action').last().click();
   });
 };
 
 var selectPreviousWeek = function() {
-  Ember.run(() => {
-    Ember.$('button.as-calendar-header__nav-group-action').first().click();
+  run(() => {
+    $('button.as-calendar-header__nav-group-action').first().click();
   });
 };
 
